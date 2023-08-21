@@ -39,8 +39,9 @@ def stress_test():
 
     # Calculate total stress score
     total_score = sum(answer["score"] for answer in answers.values())
+    percentage = (total_score / 32) * 100
     
-    st.progress(total_score, "Your Stress Status")
+    st.progress(percentage, "Your Stress Status")
 
     # Store the assessed score
     store_assessment(total_score)
@@ -67,7 +68,7 @@ def display_score_distribution():
         assessments = pd.read_csv("assessments.csv")
         st.subheader("The average score rated by the audience till now")
         plt.figure(figsize=(10, 6))
-        plt.hist(assessments["Score"], bins=[0, 5, 10, 15, 20, 25, 30], edgecolor="black")
+        plt.hist(assessments["Score"], bins=[0, 10, 15, 20, 25, 30], edgecolor="black")
         plt.xlabel("Stress Score")
         plt.ylabel("Frequency")
         plt.title("Average Audience Stress Distribution")
