@@ -39,9 +39,10 @@ def stress_test():
 
     # Calculate total stress score
     total_score = sum(answer["score"] for answer in answers.values())
-    percentage = (total_score / 32) * 100
-    
-    st.progress(percentage, "Your Stress Status")
+    percentage = int((total_score / 32) * 100)
+
+    if total_score > 0:
+        st.progress(percentage, "Your Stress Status")
 
     # Store the assessed score
     store_assessment(total_score)
